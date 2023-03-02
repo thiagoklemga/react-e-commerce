@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "lint": "npx tsc --noEmit && npx eslint --fix .",
     "prettier": "npx prettier --write .",
-    "prepare": "husky install"
+    "component": "npx generate-react-cli component"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "generate-react-cli": "^8.2.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "typescript": "^4.9.3",

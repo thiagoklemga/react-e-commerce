@@ -9,7 +9,8 @@
     "test": "vitest",
     "lint": "npx tsc --noEmit && npx eslint --fix .",
     "prettier": "npx prettier --write .",
-    "component": "npx generate-react-cli component"
+    "component": "npx generate-react-cli component",
+    "page": "npx generate-react-cli component --type=page"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",

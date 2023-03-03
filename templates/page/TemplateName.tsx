@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TemplateName: React.FC = () => {
   return (
     <div>

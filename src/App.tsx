@@ -1,21 +1,16 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-function App() {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+import { Home, Login } from './pages';
 
+const App: React.FC = () => {
   return (
-    <>
-      <h1>Hey, its working!</h1>
-      {!isAuthenticated ? (
-        <button onClick={() => loginWithRedirect()}>Login</button>
-      ) : (
-        <>
-          <button onClick={() => logout()}>Log out</button>
-          {JSON.stringify(user)}
-        </>
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

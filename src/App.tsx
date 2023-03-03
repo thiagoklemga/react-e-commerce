@@ -1,7 +1,16 @@
-import './App.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hey, its working!</h1>;
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+  return !isAuthenticated ? (
+    <button onClick={() => loginWithRedirect()}>Login</button>
+  ) : (
+    <>
+      <button onClick={() => logout()}>Log out</button>
+      {JSON.stringify(user)}
+    </>
+  );
 }
 
 export default App;

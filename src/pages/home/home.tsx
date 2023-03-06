@@ -15,26 +15,29 @@ type ProductsResponseProps = {
 }[];
 
 export const Home: React.FC = () => {
+  const [categories, setCategories] = useState<string[]>([]);
   const [category, setCategory] = useState('');
   const [products, setProducts] = useState<ProductsResponseProps>([]);
 
   const categoryOptions = [
     { value: '', label: 'All' },
-    { value: 'category/electronics', label: 'Eletronics' },
-    { value: 'category/jewelery', label: 'Jewelery' },
-    { value: `category/men's%20clothing`, label: 'Mens clothing' },
-    { value: `category/women's%20clothing`, label: 'Womens clothing' },
+    ...categories.map((category: string) => ({
+      value: `/category/${encodeURIComponent(category)}`,
+      label: category.charAt(0).toUpperCase() + category.slice(1),
+    })),
   ];
 
-  console.log(category);
-
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${category}`)
+    fetch(`https://fakestoreapi.com/products${category}`)
       .then((res) => res.json())
       .then((json) => setProducts(json));
   }, [category]);
 
-  console.log(products);
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products/categories')
+      .then((res) => res.json())
+      .then((json) => setCategories(json));
+  }, []);
 
   return (
     <>

@@ -46,8 +46,6 @@ export const Home: React.FC = () => {
       .then((json) => setCategories(json));
   }, []);
 
-  console.log(products, sort);
-
   return (
     <>
       <h1 className="my-8 text-center text-5xl font-medium">Products</h1>

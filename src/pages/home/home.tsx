@@ -70,6 +70,7 @@ export const Home: React.FC = () => {
             title={product.title}
             category={product.category}
             price={product.price}
+            addCart={true}
           />
         ))}
       </div>

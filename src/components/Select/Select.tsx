@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 interface SelectProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;

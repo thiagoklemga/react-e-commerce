@@ -3,12 +3,12 @@ import { FC, ReactNode } from 'react';
 interface ButtonProps {
   children?: ReactNode;
   icon?: ReactNode;
-  className?: string;
+  onClick?: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({ children, icon, className }) => {
+export const Button: FC<ButtonProps> = ({ children, icon, onClick }) => {
   return (
-    <button className={`inline-flex gap-3 `}>
+    <button className={`inline-flex gap-3 `} onClick={onClick}>
       {icon}
       {children}
     </button>

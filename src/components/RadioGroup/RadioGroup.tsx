@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useState } from 'react';
 import { RadioGroup as HeadlesUiRadioGroup } from '@headlessui/react';
 
 interface RadioGroupProps {

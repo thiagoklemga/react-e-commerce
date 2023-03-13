@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { useCartStore } from '../../hooks';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { Button } from '../index';
 
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { useCartStore } from '../../hooks';
 
 interface ProductCardProps {
   id: number;
@@ -22,9 +23,13 @@ export const ProductCard: FC<ProductCardProps> = ({
   price,
   addCart,
 }) => {
+  const { isAuthenticated } = useAuth0();
   const addToCart = useCartStore((state) => state.addToCart);
+  const removeProductFromCart = useCartStore(
+    (state) => state.removeProductFromCart
+  );
 
-  const handleClick = () => {
+  const handleClick = (e: string) => {
     const product = {
       id,
       image,
@@ -33,7 +38,18 @@ export const ProductCard: FC<ProductCardProps> = ({
       price,
     };
 
-    addToCart(product);
+    if (!isAuthenticated) {
+      alert('Please login to add to cart');
+      return;
+    }
+
+    if (e === 'remove') {
+      removeProductFromCart(product.id);
+    } else if (e === 'add') {
+      addToCart(product);
+    } else if (e === 'buy') {
+      alert('You bought the product');
+    }
   };
 
   return (
@@ -46,7 +62,7 @@ export const ProductCard: FC<ProductCardProps> = ({
               <Button
                 icon={<PlusIcon className="h-10 w-10" />}
                 className=" items-center text-xl font-bold text-white"
-                onClick={handleClick}
+                onClick={() => handleClick('add')}
               >
                 Add Cart
               </Button>
@@ -55,14 +71,14 @@ export const ProductCard: FC<ProductCardProps> = ({
                 <Button
                   icon={<TrashIcon className="h-8 w-8" />}
                   className=" items-center text-xl font-bold text-white"
-                  onClick={handleClick}
+                  onClick={() => handleClick('remove')}
                 >
                   Remove
                 </Button>
 
                 <Button
                   className=" items-center text-xl font-bold text-white"
-                  onClick={handleClick}
+                  onClick={() => handleClick('buy')}
                 >
                   Buy
                 </Button>

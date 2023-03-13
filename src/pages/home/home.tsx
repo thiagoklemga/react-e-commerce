@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
           onChange={(e) => setSort(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-3 justify-items-center gap-4">
+      <div className="grid grid-cols-3 justify-items-center gap-y-16">
         {products?.map((product) => (
           <ProductCard
             key={product.id}
@@ -70,6 +70,7 @@ export const Home: React.FC = () => {
             title={product.title}
             category={product.category}
             price={product.price}
+            addCart={true}
           />
         ))}
       </div>
